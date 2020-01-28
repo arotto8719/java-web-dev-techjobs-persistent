@@ -1,5 +1,6 @@
 package org.launchcode.javawebdevtechjobspersistent.models;
 
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 
 // This is a change made in sandbox.

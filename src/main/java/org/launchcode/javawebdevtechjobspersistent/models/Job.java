@@ -1,6 +1,8 @@
 package org.launchcode.javawebdevtechjobspersistent.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Job{
@@ -9,6 +11,8 @@ public class Job{
     @GeneratedValue
     private int id;
 
+    @NotBlank
+    @Size(min=50, message="Name will be longer than 50 characters")
     private String name;
 
     private String employer;
