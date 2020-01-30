@@ -1,6 +1,7 @@
 package org.launchcode.javawebdevtechjobspersistent.controllers;
 
 import org.launchcode.javawebdevtechjobspersistent.models.Employer;
+import org.launchcode.javawebdevtechjobspersistent.models.JobData;
 import org.launchcode.javawebdevtechjobspersistent.models.Skill;
 import org.launchcode.javawebdevtechjobspersistent.models.data.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,9 @@ public class SkillController {
     private SkillRepository skillRepository;
 
     @GetMapping("add")
-    public String displayAddSkillsForm(Model model) {
+    public String displayAddSkillForm(Model model) {
+        model.addAttribute("skills", "All Skills");
+        model.addAttribute("skills", skillRepository.findAll());
         model.addAttribute(new Skill());
         return "skills/add";
     }
@@ -42,6 +45,7 @@ public class SkillController {
         Optional optSkill = skillRepository.findById(skillId);
         if (optSkill.isPresent()) {
             Skill skill = (Skill) optSkill.get();
+            model.addAttribute("skill", skill);
             model.addAttribute("Skill", skill);
             return "skills/view";
         } else {

@@ -12,7 +12,7 @@ public class Skill extends AbstractEntity {
     }
 
     @NotBlank
-    @Size(min=3, max=100, message="Description will be longer than 50 characters")
+    @Size(min=2, max=100)
     private String description;
 
     public Skill(String description) {

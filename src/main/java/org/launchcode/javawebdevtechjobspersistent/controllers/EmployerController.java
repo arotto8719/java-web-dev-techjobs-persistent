@@ -9,7 +9,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import java.util.Optional;
 
 @Controller
@@ -19,8 +18,12 @@ public class EmployerController {
     @Autowired
     private EmployerRepository employerRepository;
 
+    //findAll, save, findById
+
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
+        model.addAttribute("employers", "All Employers");
+        model.addAttribute("employers", employerRepository.findAll());
         model.addAttribute(new Employer());
         return "employers/add";
     }
@@ -33,7 +36,7 @@ public class EmployerController {
             return "employers/add";
         }
         employerRepository.save(newEmployer);
-        return "redirect:";
+        return "redirect:add";
     }
 
     @GetMapping("view/{employerId}")
@@ -43,6 +46,8 @@ public class EmployerController {
         if (optEmployer.isPresent()) {
             Employer employer = (Employer) optEmployer.get();
             model.addAttribute("employer", employer);
+            model.addAttribute("Employer", employer);
+
             return "employers/view";
         } else {
             return "redirect:../";
