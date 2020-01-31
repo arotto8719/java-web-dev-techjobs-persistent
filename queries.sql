@@ -5,5 +5,9 @@ id int(11) PK, employer varchar(255), name varchar(255), skills varchar(255)
 SELECT * FROM employer
 WHERE location='St. Louis city';
 ## Part 3: Test it with SQL
-
+Drop Table job;
 ## Part 4: Test it with SQL
+SELECT name, description
+From skill
+INNER JOIN job ON skill.id = job.skills WHERE job is not_null
+ORDER BY name ASC;
