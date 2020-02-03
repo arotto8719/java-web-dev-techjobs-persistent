@@ -40,6 +40,9 @@ public class HomeController {
 
     @GetMapping("add")
     public String displayAddJobForm(Model model) {
+
+        model.addAttribute("employers", employerRepository.findAll());
+        model.addAttribute("skills", skillRepository.findAll());
         model.addAttribute("title", "Add Job");
         model.addAttribute(new Job());
         return "add";
@@ -54,9 +57,8 @@ public class HomeController {
             return "add";
         }
         Employer newEmployer = employerRepository.findById(employerId).get();
-
-        List<Skill> skillObjs = (List<Skill>)skillRepository.findAllById(skills);
-        newJob.setSkills(skillObjs);
+        List<Skill> skillsObjs = (List<Skill>)skillRepository.findAllById(skills);
+        newJob.setSkills(skillsObjs);
 
         newJob.setEmployer(newEmployer);
         jobRepository.save(newJob);

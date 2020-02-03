@@ -81,25 +81,31 @@ public class JobData {
      */
     public static ArrayList<Job> findByValue(String value, Iterable<Job> allJobs) {
 
-
         ArrayList<Job> results = new ArrayList<>();
 
         for (Job job : allJobs) {
 
             if (job.getName().toLowerCase().contains(value.toLowerCase())) {
+
                 results.add(job);
+
             } else if (job.getEmployer().toString().toLowerCase().contains(value.toLowerCase())) {
+
                 results.add(job);
-            } else if (job.getSkills().contains(value.toLowerCase())) {
+
+            } else if (job.getSkills().toString().toLowerCase().contains(value.toLowerCase())) {
+
                 results.add(job);
-            } else if (job.toString().toLowerCase().contains(value.toLowerCase())) {
-                results.add(job);
+
             }
 
         }
 
         return results;
+
     }
+
+
 
 
 }
